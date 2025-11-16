@@ -14,7 +14,7 @@ This is a beginner project to learn **C#** and **WPF**.
    - SQL Server (via Windows Service, e.g., MySQL)
    - The application automatically detects running servers and updates the UI accordingly.
 
-2. **Live Console Output**
+2. **Live Log Output**
    - Logs from Authserver and Worldserver are displayed in real-time within the application.
    - Allows easy monitoring and troubleshooting of server activity.
 
@@ -35,7 +35,7 @@ This is a beginner project to learn **C#** and **WPF**.
 
 ## **Current known Bugs**
 
-   - Currently the Authserver Log doesn't show anything from the authserver.exe
+None
 
 ---
 
