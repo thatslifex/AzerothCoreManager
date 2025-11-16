@@ -2,10 +2,11 @@
 
 AzerothCoreManager is a lightweight Windows application for managing **AzerothCore servers**.  
 It allows starting and stopping the Authserver, Worldserver, and SQL Server, while also providing live console output and resource monitoring.
+This is a beginner project to learn **C#** and **WPF**.
 
 ---
 
-## **Features**
+## **Current Features**
 
 1. **Start and Stop Servers**
    - Authserver (`authserver.exe`)
@@ -32,16 +33,6 @@ It allows starting and stopping the Authserver, Worldserver, and SQL Server, whi
 
 ---
 
-## **Planned Features**
-
-- Management of AzerothCore source code
-- Module management
-- Building the server from source
-- Realm and user management
-- Additional tools to simplify server administration
-- More advanced logging and monitoring options
-
----
 
 ## **About Me**
 
@@ -52,6 +43,18 @@ Because this is an ongoing learning project, the application may have some rough
 
 I am continuously learning and improving this tool, so feedback is very welcome!  
 Suggestions on how to structure the application, improve functionality, or tackle bigger challenges are highly appreciated.
+
+---
+
+## **Planned Features**
+
+- Management of AzerothCore source code
+- Checking and Installing Prerequisites
+- Module management
+- Building the server from source
+- Realm and user management
+- Additional tools to simplify server administration
+- More advanced logging and monitoring options
 
 ---
 
