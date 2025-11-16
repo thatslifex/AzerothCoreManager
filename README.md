@@ -33,6 +33,11 @@ This is a beginner project to learn **C#** and **WPF**.
 
 ---
 
+## **Current known Bugs**
+
+   - Currently the Authserver Log doesn't show anything from the authserver.exe
+
+---
 
 ## **About Me**
 
