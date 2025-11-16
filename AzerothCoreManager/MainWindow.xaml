@@ -11,7 +11,7 @@
     MinHeight="600"
     mc:Ignorable="d">
     <Window.Resources>
-        <!-- Colors for server state -->
+        <!--  Colors for server state  -->
         <SolidColorBrush x:Key="OnlineBrush" Color="#FF4CAF50" />
         <SolidColorBrush x:Key="OfflineBrush" Color="#FFF44336" />
     </Window.Resources>
@@ -44,9 +44,9 @@
                 Margin="10"
                 Padding="10"
                 Background="#FFEEEEEE"
-                CornerRadius="10"
                 BorderBrush="{StaticResource OfflineBrush}"
-                BorderThickness="3">
+                BorderThickness="3"
+                CornerRadius="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -73,7 +73,6 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button
                             Name="AuthStartButton"
@@ -87,11 +86,6 @@
                             Margin="10"
                             Click="AuthStopButton_Click"
                             Content="Stop" />
-                        <Button
-                            Name="AuthRestartButton"
-                            Grid.Column="2"
-                            Margin="10"
-                            Content="Restart" />
                     </Grid>
                 </Grid>
             </Border>
@@ -102,9 +96,9 @@
                 Margin="10"
                 Padding="10"
                 Background="#FFEEEEEE"
-                CornerRadius="10"
                 BorderBrush="{StaticResource OfflineBrush}"
-                BorderThickness="3">
+                BorderThickness="3"
+                CornerRadius="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -131,7 +125,6 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Button
                             Name="WorldStartButton"
@@ -145,11 +138,6 @@
                             Margin="10"
                             Click="WorldStopButton_Click"
                             Content="Stop" />
-                        <Button
-                            Name="WorldRestartButton"
-                            Grid.Column="2"
-                            Margin="10"
-                            Content="Restart" />
                     </Grid>
                 </Grid>
             </Border>
@@ -161,6 +149,7 @@
                 Padding="10"
                 Background="#FFEEEEEE"
                 BorderBrush="{StaticResource OfflineBrush}"
+                BorderThickness="3"
                 CornerRadius="10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -194,16 +183,19 @@
                             Name="SQLStartButton"
                             Grid.Column="0"
                             Margin="10"
+                            Click="SQLStartButton_Click"
                             Content="Start" />
                         <Button
                             Name="SQLStopButton"
                             Grid.Column="1"
                             Margin="10"
+                            Click="SQLStopButton_Click"
                             Content="Stop" />
                         <Button
                             Name="SQLRestartButton"
                             Grid.Column="2"
                             Margin="10"
+                            Click="SQLRestartButton_Click"
                             Content="Restart" />
                     </Grid>
                 </Grid>
@@ -224,8 +216,8 @@
                 CornerRadius="4">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock
                         Grid.Row="0"
@@ -235,20 +227,20 @@
                         Foreground="White"
                         Text="Auth Server Console" />
                     <TextBox
-                        Grid.Row="1"
                         x:Name="AuthConsoleTextBox"
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
                         AcceptsReturn="True"
                         Background="#FF1E1E1E"
                         BorderThickness="0"
                         FontFamily="Consolas"
                         FontSize="12"
                         Foreground="LightGray"
+                        HorizontalScrollBarVisibility="Disabled"
                         IsReadOnly="True"
                         TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Disabled"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"/>
+                        VerticalScrollBarVisibility="Auto" />
                 </Grid>
             </Border>
 
@@ -261,8 +253,8 @@
                 CornerRadius="4">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
                     <TextBlock
                         Grid.Row="0"
@@ -272,28 +264,29 @@
                         Foreground="White"
                         Text="World Server Console" />
                     <TextBox
-                        Grid.Row="1"
                         x:Name="WorldConsoleTextBox"
+                        Grid.Row="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch"
                         AcceptsReturn="True"
                         Background="#FF1E1E1E"
                         BorderThickness="0"
                         FontFamily="Consolas"
                         FontSize="12"
                         Foreground="LightGray"
+                        HorizontalScrollBarVisibility="Disabled"
                         IsReadOnly="True"
                         TextWrapping="Wrap"
-                        VerticalScrollBarVisibility="Auto"
-                        HorizontalScrollBarVisibility="Disabled"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"/>
+                        VerticalScrollBarVisibility="Auto" />
                 </Grid>
             </Border>
         </Grid>
         <!--  Settings Button  -->
         <Button
+            x:Name="SettingsButton"
             Grid.Row="3"
-            Width="200"
+            Width="Auto"
             Margin="10"
-            Content="Settings" />
+            Content="Set Path to Auth- and Worldserver Binaries" Click="SettingsButton_Click" />
     </Grid>
 </Window>
