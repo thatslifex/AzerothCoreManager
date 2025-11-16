@@ -7,6 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>wotlk.ico</ApplicationIcon>
+    <StartupObject>AzerothCoreManager.App</StartupObject>
+    <Description>A AzerothCore Server Manager</Description>
+    <RepositoryUrl>https://github.com/thatslifex/AzerothCoreManager</RepositoryUrl>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,7 +18,16 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft-WindowsAPICodePack-Shell" Version="1.1.5" />
+    <PackageReference Include="NetSparkleUpdater.SparkleUpdater" Version="3.0.4" />
+    <PackageReference Include="NetSparkleUpdater.UI.WPF" Version="3.0.4" />
     <PackageReference Include="System.ServiceProcess.ServiceController" Version="9.0.11" />
   </ItemGroup>
 

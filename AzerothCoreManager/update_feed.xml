@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Sparkle>
+	<AppCast>
+		<Item>
+			<Title>AzerothCoreManager Update</Title>
+			<Version>1.0.0</Version>
+			<Enclosure
+                url="https://github.com/thatslifex/AzerothCoreManager/releases/tag/v1.0.0/setup.exe"
+                sparkle:version="1.0.0"
+                type="application/octet-stream"
+            />
+		</Item>
+	</AppCast>
+</Sparkle>
