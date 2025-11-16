@@ -29,6 +29,11 @@ namespace AzerothCoreManager
         // Cache the discovered service name (ServiceName) to avoid searching every tick when stable
         private string? _cachedSqlServiceName;
 
+        private readonly DispatcherTimer _resourceTimer = new DispatcherTimer();
+        private readonly Dictionary<string, TimeSpan> _prevCpuTimes = new();
+        private readonly Dictionary<string, DateTime> _prevCheckTime = new();
+
+
         /// <summary>
         /// Initialize the WPF window, wire up the Closing handler used to ensure servers are stopped
         /// when the UI closes.
@@ -38,38 +43,40 @@ namespace AzerothCoreManager
         {
             InitializeComponent();
 
-            // Auth/World Buttons immer initial deaktivieren
+            // Buttons erstmal deaktivieren
             AuthStartButton.IsEnabled = false;
             AuthStopButton.IsEnabled = false;
             WorldStartButton.IsEnabled = false;
             WorldStopButton.IsEnabled = false;
 
-            // SQL Timer starten (unabhängig vom Pfad)
-            _sqlServiceTimer.Interval = TimeSpan.FromSeconds(3);
-            _sqlServiceTimer.Tick += (s, e) => UpdateSqlServiceState();
-            _sqlServiceTimer.Start();
+            // Rahmenfarben aktualisieren, auch wenn Buttons noch deaktiviert sind
+            bool authRunning = ServerIsRunning("authserver.exe");
+            bool worldRunning = ServerIsRunning("worldserver.exe");
+            OnAuthRunningChanged(authRunning);
+            OnWorldRunningChanged(worldRunning);
+            UpdateSqlServiceState();
 
+            // Prüfen, ob ein Pfad gesetzt ist
             if (_controller.HasValidPath)
             {
-                // Pfad ist gesetzt: Buttons entsprechend laufender Prozesse aktivieren
-                UpdateServerButtons();
-
-                // Subscribe zu RunningChanged-Events
-                _controller.AuthServer.RunningChanged += OnAuthRunningChanged;
-                _controller.WorldServer.RunningChanged += OnWorldRunningChanged;
+                UpdateServerButtons(); // Buttons abhängig vom laufenden Prozess aktivieren
             }
             else
             {
-                // Kein Pfad gesetzt: Buttons bleiben deaktiviert
                 MessageBox.Show(
-                    "Es wurde kein gültiger Serverpfad gefunden.\n" +
-                    "Bitte klicken Sie auf 'Settings', um den Ordner auszuwählen.",
+                    "Es wurde kein gültiger Serverpfad gefunden.\nBitte klicken Sie auf 'Settings', um den Ordner auszuwählen.",
                     "Pfad erforderlich",
                     MessageBoxButton.OK,
                     MessageBoxImage.Warning
                 );
             }
+
+            // SQL Timer starten, unabhängig vom Pfad
+            _sqlServiceTimer.Interval = TimeSpan.FromSeconds(3);
+            _sqlServiceTimer.Tick += (s, e) => UpdateSqlServiceState();
+            _sqlServiceTimer.Start();
         }
+
         // AUTH
 
         /// <summary>
@@ -169,7 +176,10 @@ namespace AzerothCoreManager
             OnSqlRunningChanged(false);
         }
 
-        private void SQLRestartButton_Click(object sender, RoutedEventArgs e) => _controller.RestartSQL();
+        private void SQLRestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            _controller.RestartSQL();
+        }
 
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
@@ -373,6 +383,55 @@ namespace AzerothCoreManager
             }
             return false;
         }
+
+        private void UpdateResourceUsage()
+        {
+            UpdateProcessResources("authserver.exe", AuthCPUBar, AuthRAMBar);
+            UpdateProcessResources("worldserver.exe", WorldCPUBar, WorldRAMBar);
+        }
+
+        private void UpdateProcessResources(string exeName, System.Windows.Controls.ProgressBar cpuBar, System.Windows.Controls.ProgressBar ramBar)
+        {
+            var procs = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(exeName));
+            if (procs.Length == 0)
+            {
+                cpuBar.Value = 0;
+                ramBar.Value = 0;
+                return;
+            }
+
+            var proc = procs[0];
+
+            try
+            {
+                // RAM relativ zum Gesamtspeicher
+                var totalRam = new Microsoft.VisualBasic.Devices.ComputerInfo().TotalPhysicalMemory;
+                double ramMB = proc.WorkingSet64 / 1024.0 / 1024.0;
+                ramBar.Value = Math.Min(ramBar.Maximum, (ramMB / (totalRam / 1024.0 / 1024.0)) * 100); // in Prozent
+
+                // CPU relativ zur Gesamt-CPU
+                DateTime now = DateTime.Now;
+                TimeSpan totalCpu = proc.TotalProcessorTime;
+
+                if (_prevCpuTimes.TryGetValue(exeName, out var prevCpu) && _prevCheckTime.TryGetValue(exeName, out var prevTime))
+                {
+                    double elapsedMs = (now - prevTime).TotalMilliseconds;
+                    double cpuUsedMs = (totalCpu - prevCpu).TotalMilliseconds;
+                    double cpuPercent = (cpuUsedMs / (elapsedMs * Environment.ProcessorCount)) * 100;
+
+                    cpuBar.Value = Math.Min(cpuBar.Maximum, cpuPercent);
+                }
+
+                _prevCpuTimes[exeName] = totalCpu;
+                _prevCheckTime[exeName] = now;
+            }
+            catch
+            {
+                cpuBar.Value = 0;
+                ramBar.Value = 0;
+            }
+        }
+
 
     }
 }

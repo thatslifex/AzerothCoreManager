@@ -153,6 +153,5 @@ namespace AzerothCoreManager
                 RunningChanged?.Invoke(false);
             }
         }
-
     }
 }

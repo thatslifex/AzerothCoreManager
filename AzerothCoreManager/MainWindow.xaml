@@ -63,9 +63,15 @@
                     <Grid Grid.Row="1">
                         <StackPanel>
                             <TextBlock Margin="10" Text="CPU" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="AuthCPUBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                             <TextBlock Margin="10" Text="RAM" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="AuthRAMBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                         </StackPanel>
                     </Grid>
                     <!--  Start/Stop Buttons  -->
@@ -115,9 +121,15 @@
                     <Grid Grid.Row="1">
                         <StackPanel>
                             <TextBlock Margin="10" Text="CPU" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="WorldCPUBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                             <TextBlock Margin="10" Text="RAM" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="WorldRAMBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                         </StackPanel>
                     </Grid>
                     <!--  Start/Stop Buttons  -->
@@ -167,9 +179,15 @@
                     <Grid Grid.Row="1">
                         <StackPanel>
                             <TextBlock Margin="10" Text="CPU" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="SQLCPUBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                             <TextBlock Margin="10" Text="RAM" />
-                            <ProgressBar Height="20" Margin="10,0,0,0" />
+                            <ProgressBar
+                                x:Name="SQLRAMBar"
+                                Height="20"
+                                Margin="10,0,0,0" />
                         </StackPanel>
                     </Grid>
                     <!--  Start/Stop Buttons  -->
@@ -287,6 +305,7 @@
             Grid.Row="3"
             Width="Auto"
             Margin="10"
-            Content="Set Path to Auth- and Worldserver Binaries" Click="SettingsButton_Click" />
+            Click="SettingsButton_Click"
+            Content="Set Path to Auth- and Worldserver Binaries" />
     </Grid>
 </Window>

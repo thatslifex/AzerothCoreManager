@@ -41,12 +41,6 @@ namespace AzerothCoreManager
         private string _basePath;
 
         /// <summary>
-        /// Base folder where the MySQL server executables are expected to be located.
-        /// This value is combined with executable file names using <see cref="GetPath(string)"/>.
-        /// </summary>
-        private readonly string _baseSQLPath = "C:\\Program Files\\MySQL\\MySQL Server 8.4\\bin\\";
-
-        /// <summary>
         /// Approximate search term used to find the MySQL Windows service (case-insensitive substring match).
         /// </summary>
         private const string _sqlServiceSearchTerm = "mysql";
@@ -85,11 +79,6 @@ namespace AzerothCoreManager
         /// <param name="exeName">The name of the executable file to append to the base SQL path. Cannot be null or contain invalid path
         /// characters.</param>
         /// <returns>A string representing the full file path to the specified executable within the base SQL directory.</returns>
-        private string GetSQLPath(string exeName)
-        {
-            // Use Path.Combine to produce a platform-correct path string from base path and file name.
-            return Path.Combine(_baseSQLPath, exeName);
-        }
 
         /// <summary>
         /// Start the authentication server process if the executable is present.
