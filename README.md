@@ -48,6 +48,8 @@ It allows starting and stopping the Authserver, Worldserver, and SQL Server, whi
 I am a beginner in **C#** and **WPF**, and I wanted to combine two things I enjoy:  
 managing an AzerothCore server and creating graphical user interfaces.  
 
+Because this is an ongoing learning project, the application may have some rough edges. But I will try to improve it over time!
+
 I am continuously learning and improving this tool, so feedback is very welcome!  
 Suggestions on how to structure the application, improve functionality, or tackle bigger challenges are highly appreciated.
 
