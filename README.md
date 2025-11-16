@@ -56,8 +56,11 @@ Feedback and suggestions on how to structure the application, improve functional
 - Module management
 - Building the server from source
 - Realm and user management
-- Additional tools to simplify server administration
+- GM Tools (Ban Account/Character, Give Items, Send Mail, Teleport, etc.)
 - More advanced logging and monitoring options
+- Multi Language Support
+- Database Backups and Imports
+- Theme Manager (Light, Dark, Background Images)
 
 ---
 
