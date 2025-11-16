@@ -14,7 +14,7 @@ This is a beginner project to learn **C#** and **WPF**.
    - SQL Server (via Windows Service, e.g., MySQL)
    - The application automatically detects running servers and updates the UI accordingly.
 
-2. **Live Console Output**
+2. **Live Log Output**
    - Logs from Authserver and Worldserver are displayed in real-time within the application.
    - Allows easy monitoring and troubleshooting of server activity.
 
@@ -33,16 +33,19 @@ This is a beginner project to learn **C#** and **WPF**.
 
 ---
 
+## **Current known Bugs**
+
+None
+
+---
 
 ## **About Me**
 
 I am a beginner in **C#** and **WPF**, and I wanted to combine two things I enjoy:  
 managing an AzerothCore server and creating graphical user interfaces.  
 
-Because this is an ongoing learning project, the application may have some rough edges. But I will try to improve it over time!
-
-I am continuously learning and improving this tool, so feedback is very welcome!  
-Suggestions on how to structure the application, improve functionality, or tackle bigger challenges are highly appreciated.
+Because this is an ongoing learning project, the application may have some rough edges. But I will try to improve it over time! 
+Feedback and suggestions on how to structure the application, improve functionality, or tackle bigger challenges are highly appreciated.
 
 ---
 
@@ -53,8 +56,11 @@ Suggestions on how to structure the application, improve functionality, or tackl
 - Module management
 - Building the server from source
 - Realm and user management
-- Additional tools to simplify server administration
+- GM Tools (Ban Account/Character, Give Items, Send Mail, Teleport, etc.)
 - More advanced logging and monitoring options
+- Multi Language Support
+- Database Backups and Imports
+- Theme Manager (Light, Dark, Background Images)
 
 ---
 
