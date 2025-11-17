@@ -28,7 +28,7 @@ namespace AzerothCoreManager
         {
             InitializeComponent();
 
-            _sparkle = new SparkleUpdater("https://github.com/thatslifex/AzerothCoreManager/raw/refs/heads/master/AzerothCoreManager/appcast.xml", new Ed25519Checker(SecurityMode.Strict, "BlMRMbR+pgbPYMrTJ18LNBk4bw6hxxmzy0CpKDA2rS4="))
+            _sparkle = new SparkleUpdater("https://raw.githubusercontent.com/thatslifex/AzerothCoreManager/refs/heads/master/AzerothCoreManager/appcast.xml", new Ed25519Checker(SecurityMode.Strict, "BlMRMbR+pgbPYMrTJ18LNBk4bw6hxxmzy0CpKDA2rS4="))
             {
                 UIFactory = new NetSparkleUpdater.UI.WPF.UIFactory( /* optional Icon */ null),
                 RelaunchAfterUpdate = true,
