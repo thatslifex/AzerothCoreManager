@@ -300,12 +300,28 @@
             </Border>
         </Grid>
         <!--  Settings Button  -->
-        <Button
-            x:Name="SettingsButton"
-            Grid.Row="3"
-            Width="Auto"
-            Margin="10"
-            Click="SettingsButton_Click"
-            Content="Set Path to Auth- and Worldserver Binaries" />
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button
+                x:Name="SettingsButton"
+                Grid.Column="0"
+                Width="Auto"
+                Margin="10"
+                Click="SettingsButton_Click"
+                Content="Set Path to Auth- and Worldserver Binaries" />
+
+            <Button
+                x:Name="CheckForUpdatesButton"
+                Grid.Column="1"
+                Width="150"
+                Height="30"
+                Click="CheckForUpdatesButton_Click"
+                Content="Check for Updates" />
+
+        </Grid>
+
     </Grid>
 </Window>

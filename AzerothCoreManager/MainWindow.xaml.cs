@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NetSparkleUpdater;
+using NetSparkleUpdater.Enums;
+using NetSparkleUpdater.SignatureVerifiers;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
@@ -65,6 +68,20 @@ namespace AzerothCoreManager
                 ResetLogPositions();
                 _logTimer.Start();
             }
+
+            _sparkle = new SparkleUpdater(
+                "https://deinserver.de/appcast.xml",  // Dein AppCast-URL
+                new Ed25519Checker(SecurityMode.Strict, "dein_base64_public_key")
+            )
+            {
+                UIFactory = new NetSparkleUpdater.UI.WPF.UIFactory( /* optional Icon */ null),
+                RelaunchAfterUpdate = true,
+                CustomInstallerArguments = "/SILENT" // z.B. für stillen Modus
+            };
+
+            // Starte Update-Schleife:
+            _sparkle.StartLoop(true);
+        }
         }
 
         // --- Auth / World Buttons ---
@@ -225,6 +242,12 @@ namespace AzerothCoreManager
                 catch { SQLBorder.BorderBrush = running ? Brushes.Green : Brushes.Red; }
             });
         }
+
+        private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
+        {
+            App.AppUpdater?.CheckForUpdates();
+        }
+
 
         // --- Helpers ---
         private void UpdateSqlServiceState()

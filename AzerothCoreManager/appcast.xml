@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Sparkle>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
 	<AppCast>
 		<Item>
 			<Title>AzerothCoreManager Update</Title>
@@ -11,4 +11,5 @@
             />
 		</Item>
 	</AppCast>
-</Sparkle>
+</rss>
+
