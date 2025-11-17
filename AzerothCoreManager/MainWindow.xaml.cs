@@ -28,12 +28,19 @@ namespace AzerothCoreManager
         {
             InitializeComponent();
 
+            string logPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "netsparkle.log");
+
+            var fileLogger = new SparkleFileLogger(logPath);
+
             _sparkle = new SparkleUpdater("https://raw.githubusercontent.com/thatslifex/AzerothCoreManager/refs/heads/master/AzerothCoreManager/appcast.xml", new Ed25519Checker(SecurityMode.Strict, "yykLr6imy8Q5pxRW2l8QOasfQedR3ryhpPdeore6UF8="))
             {
                 UIFactory = new NetSparkleUpdater.UI.WPF.UIFactory(Icon),
                 RelaunchAfterUpdate = true,
+                LogWriter = fileLogger
+
             };
             _sparkle.StartLoop(true);
+
 
             // Buttons initial deaktivieren
             AuthStartButton.IsEnabled = false;
