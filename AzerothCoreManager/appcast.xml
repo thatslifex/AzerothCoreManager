@@ -1,15 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
-	<AppCast>
-		<Item>
-			<Title>AzerothCoreManager Update</Title>
-			<Version>1.0.0</Version>
-			<Enclosure
-                url="https://github.com/thatslifex/AzerothCoreManager/releases/tag/v1.0.0/setup.exe"
-                sparkle:version="1.0.0"
-                type="application/octet-stream"
-            />
-		</Item>
-	</AppCast>
+  <channel>
+    <title>Application</title>
+    <description>Most recent changes with links to updates</description>
+    <language>en</language>
+    <item>
+      <title>Application 1.0.0</title>
+      <pubDate>Mon, 17 Nov 2025 00:04:19 +01:00</pubDate>
+      <sparkle:version>1.0.0</sparkle:version>
+      <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+      <enclosure url="https://github.com/thatslifex/AzerothCoreManager/releases/download/1.0.0/setup.exe" sparkle:version="1.0.0" sparkle:shortVersionString="1.0.0" length="2757425" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:signature="wMJOYJoICgu3lFWPFoe0U8s/F5XZJMAn89P5U1aHCM5nO5aHeoem3nHnQDY1/iL4K+LujoTpOWBtUbUpKH2dCQ==" />
+    </item>
+  </channel>
 </rss>
-
