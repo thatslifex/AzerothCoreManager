@@ -11,6 +11,7 @@
     <Description>A AzerothCore Server Manager</Description>
     <RepositoryUrl>https://github.com/thatslifex/AzerothCoreManager</RepositoryUrl>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Version>1.0.0</Version>
   </PropertyGroup>
 
   <ItemGroup>
