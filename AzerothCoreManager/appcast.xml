@@ -9,7 +9,7 @@
       <pubDate>Mon, 17 Nov 2025 00:04:19 +01:00</pubDate>
       <sparkle:version>1.0.0</sparkle:version>
       <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
-      <enclosure url="https://github.com/thatslifex/AzerothCoreManager/releases/download/1.0.0/setup.exe" sparkle:version="1.0.0" sparkle:shortVersionString="1.0.0" length="2757784" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:signature="i5Ysiv+pWJ6PjzrRISb50s46rHsfQyjqEOenZfM61mHbrawdwzCCz/UTDbn6ldaTYCjIIJVt8l0FB3mlRQkqCg==" />
+      <enclosure url="https://github.com/thatslifex/AzerothCoreManager/releases/download/1.0.0/setup.exe" sparkle:version="1.0.0" sparkle:shortVersionString="1.0.0" length="2757784" sparkle:os="windows" type="application/x-msdos-program" sparkle:criticalUpdate="false" sparkle:signature="Mdqaimer0IVt1+t3qhSybTOYURGGvQeAbhG6eM0WdxGH4JqbFyfd5lXRGP+MbLXqpC/6Ndi9koewYKuc+RdTDw==" />
     </item>
   </channel>
 </rss>
