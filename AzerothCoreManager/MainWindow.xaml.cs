@@ -1,4 +1,7 @@
-﻿using System;
+﻿using NetSparkleUpdater;
+using NetSparkleUpdater.Enums;
+using NetSparkleUpdater.SignatureVerifiers;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.ServiceProcess;
@@ -19,9 +22,18 @@ namespace AzerothCoreManager
         private long _authLastPos = 0;
         private long _worldLastPos = 0;
 
+        private SparkleUpdater _sparkle;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _sparkle = new SparkleUpdater("https://github.com/thatslifex/AzerothCoreManager/raw/refs/heads/master/AzerothCoreManager/appcast.xml", new Ed25519Checker(SecurityMode.Strict, "BlMRMbR+pgbPYMrTJ18LNBk4bw6hxxmzy0CpKDA2rS4="))
+            {
+                UIFactory = new NetSparkleUpdater.UI.WPF.UIFactory( /* optional Icon */ null),
+                RelaunchAfterUpdate = true,
+            };
+            _sparkle.StartLoop(true);
 
             // Buttons initial deaktivieren
             AuthStartButton.IsEnabled = false;
@@ -229,6 +241,7 @@ namespace AzerothCoreManager
 
         private void CheckForUpdatesButton_Click(object sender, RoutedEventArgs e)
         {
+            _sparkle.CheckForUpdatesAtUserRequest();
         }
 
 
@@ -288,5 +301,6 @@ namespace AzerothCoreManager
             }
             return false;
         }
+
     }
 }
