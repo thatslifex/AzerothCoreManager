@@ -1,0 +1,109 @@
+<Page x:Class="AzerothCoreManager.Pages.GmConsolePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:AzerothCoreManager.Controls"
+      Title="GM Console">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="GM Console" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+            <Button Content="?" Width="28" Height="28" Margin="8,0,0,0"
+                    Click="HelpButton_Click" ToolTip="Open Wiki Help"/>
+        </StackPanel>
+
+        <!-- SOAP Connection Status -->
+        <Border Grid.Row="1" Background="#CC1A1A2E" CornerRadius="6" Padding="10" Margin="0,0,0,12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                    <TextBlock x:Name="ConnectionDot" Text="●" FontSize="12" VerticalAlignment="Center"/>
+                    <TextBlock x:Name="ConnectionStatus" Text="Not connected" FontSize="13"
+                               Foreground="#FF888888" Margin="6,0,0,0" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="12,0,0,0">
+                    <TextBlock x:Name="SoapUserText" Text="" FontSize="12"
+                               Foreground="#FFAAAAAA" VerticalAlignment="Center"/>
+                </StackPanel>
+                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                    <Button x:Name="ConnectButton" Content="Connect" Width="80" Height="28"
+                            Margin="0,0,6,0" Click="ConnectButton_Click"/>
+                    <Button x:Name="DisconnectButton" Content="Disconnect" Width="80" Height="28"
+                            Click="DisconnectButton_Click" IsEnabled="False"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Command Categories -->
+        <WrapPanel Grid.Row="2" Margin="0,0,0,8" x:Name="CommandPanel">
+            <!-- Populated in code-behind -->
+        </WrapPanel>
+
+        <!-- Response Output -->
+        <Border Grid.Row="3" Background="#CC1A1A2E" CornerRadius="6" Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+                    <TextBlock Text="Command Output" FontWeight="SemiBold" Foreground="White"/>
+                    <Button x:Name="ClearOutputButton" Content="Clear" Width="60" Height="22"
+                            Margin="12,0,0,0" Click="ClearOutputButton_Click"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" x:Name="OutputScroller">
+                    <TextBox x:Name="OutputBox"
+                             IsReadOnly="True"
+                             Background="Transparent"
+                             Foreground="#FFCCCCCC"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+
+        <!-- Command Input -->
+        <Grid Grid.Row="4" Margin="0,8,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="&gt;" Foreground="#FF00FF00"
+                       FontFamily="Consolas" FontSize="14"
+                       VerticalAlignment="Center" Margin="0,0,8,0"/>
+
+            <TextBox Grid.Column="1" x:Name="CommandInput"
+                     Background="#FF0D0D1A" Foreground="White"
+                     FontFamily="Consolas" FontSize="13"
+                     BorderBrush="#FF333355" BorderThickness="1"
+                     KeyDown="CommandInput_KeyDown"/>
+
+            <Button Grid.Column="2" x:Name="SendButton" Content="Send"
+                    Width="60" Height="28" Margin="6,0,6,0"
+                    Click="SendButton_Click"
+                    Background="#FF2D2D5A" Foreground="White"/>
+
+            <Button Grid.Column="3" x:Name="FavButton" Content="★" Width="32" Height="28"
+                    Click="FavButton_Click" ToolTip="Add to favorites"/>
+        </Grid>
+    </Grid>
+</Page>

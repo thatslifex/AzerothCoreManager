@@ -1,0 +1,84 @@
+<Page x:Class="AzerothCoreManager.Pages.ServerControlPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      xmlns:controls="clr-namespace:AzerothCoreManager.Controls"
+      Title="Server Control">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="Server Control" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+            <Button Content="?" Width="28" Height="28" Margin="8,0,0,0"
+                    Click="HelpButton_Click" ToolTip="Open Wiki Help"/>
+        </StackPanel>
+
+        <!-- Server Status Cards -->
+        <WrapPanel Grid.Row="1" Margin="0,0,0,12">
+            <controls:ServerStatusCard x:Name="AuthCard"/>
+            <controls:ServerStatusCard x:Name="WorldCard"/>
+            <ui:Card Width="280" Margin="0,0,12,12">
+                <Grid Margin="12">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                        <ui:SymbolIcon Symbol="Database24" Foreground="White" FontSize="20" Margin="0,0,8,0"/>
+                        <TextBlock Text="MySQL" FontWeight="SemiBold" Foreground="White" FontSize="16"/>
+                        <TextBlock x:Name="MySqlDot" Text="●" FontSize="12" Margin="8,0,0,0"/>
+                        <TextBlock x:Name="MySqlStatus" Text="Checking..." FontSize="12"
+                                   Foreground="#FF888888" Margin="4,0,0,0"/>
+                    </StackPanel>
+                    <Button Grid.Row="1" x:Name="RefreshMySqlButton" Content="Refresh" 
+                            Width="80" Height="28" Click="RefreshMySqlButton_Click"/>
+                </Grid>
+            </ui:Card>
+        </WrapPanel>
+
+        <!-- Global Actions -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,12">
+            <Button x:Name="StartAllButton" Content="Start All" Width="100" Height="32"
+                    Margin="0,0,8,0" Click="StartAllButton_Click"
+                    Background="#FF2D5A2D" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="StopAllButton" Content="Stop All" Width="100" Height="32"
+                    Margin="0,0,8,0" Click="StopAllButton_Click"
+                    Background="#FF5A2D2D" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="RestartAllButton" Content="Restart All" Width="110" Height="32"
+                    Click="RestartAllButton_Click"/>
+        </StackPanel>
+
+        <!-- Live Console Output -->
+        <Border Grid.Row="3" Background="#CC1A1A2E" CornerRadius="6" Padding="8">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,6">
+                    <TextBlock Text="Server Output" FontWeight="SemiBold" Foreground="White"/>
+                    <Button x:Name="ClearConsoleButton" Content="Clear" Width="60" Height="22"
+                            Margin="12,0,0,0" Click="ClearConsoleButton_Click"/>
+                </StackPanel>
+                <ScrollViewer Grid.Row="1" x:Name="ConsoleScroller">
+                    <TextBox x:Name="ConsoleOutput"
+                             IsReadOnly="True"
+                             Background="Transparent"
+                             Foreground="#FFCCCCCC"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             BorderThickness="0"
+                             TextWrapping="Wrap"
+                             VerticalScrollBarVisibility="Auto"/>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

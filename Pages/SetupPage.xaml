@@ -1,0 +1,74 @@
+<Page x:Class="AzerothCoreManager.Pages.SetupPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Setup">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="Setup" FontSize="24" FontWeight="SemiBold" Foreground="White" />
+            <Button Content="?" Width="28" Height="28" Margin="8,0,0,0"
+                    Click="HelpButton_Click" ToolTip="Open Wiki Help" />
+        </StackPanel>
+
+        <TextBlock Grid.Row="1" Text="Guided server setup wizard. Run all steps automatically or manage each step individually."
+                   Foreground="#FFAAAAAA" FontSize="13" Margin="0,0,0,16" />
+
+        <!-- Step Buttons -->
+        <WrapPanel Grid.Row="2" Margin="0,0,0,12">
+            <Button x:Name="RunAllButton" Content="Run Full Setup" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="RunAllButton_Click"
+                    Background="#FF2D5A2D" Foreground="White" FontWeight="SemiBold" />
+            <Button x:Name="Step1Button" Content="1. System Check" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step1Button_Click" />
+            <Button x:Name="Step2Button" Content="2. Install Missing" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step2Button_Click" />
+            <Button x:Name="Step3Button" Content="3. Clone Source" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step3Button_Click" />
+            <Button x:Name="Step4Button" Content="4. Build" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step4Button_Click" />
+            <Button x:Name="Step5Button" Content="5. Deploy &amp; DB" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step5Button_Click" />
+            <Button x:Name="Step6Button" Content="6. Client Data" Width="140" Height="36"
+                    Margin="0,0,8,8" Click="Step6Button_Click" />
+        </WrapPanel>
+
+        <!-- Progress -->
+        <StackPanel Grid.Row="3" Margin="0,0,0,12">
+            <Grid Margin="0,0,0,6">
+                <TextBlock x:Name="StatusText" Text="Ready"
+                           Foreground="#FFAAAAAA" FontSize="13" />
+                <TextBlock x:Name="ProgressText" Text=""
+                           Foreground="#FF888888" FontSize="12"
+                           HorizontalAlignment="Right" />
+            </Grid>
+            <ProgressBar x:Name="OverallProgress" Height="6"
+                         Minimum="0" Maximum="100" Value="0" />
+        </StackPanel>
+
+        <!-- Live Log -->
+        <Border Grid.Row="4" Background="#CC1A1A2E" CornerRadius="6" Padding="8"
+                Height="200">
+            <ScrollViewer x:Name="LogScroller">
+                <TextBox x:Name="LogOutput"
+                         IsReadOnly="True"
+                         Background="Transparent"
+                         Foreground="#FFCCCCCC"
+                         FontFamily="Consolas"
+                         FontSize="12"
+                         BorderThickness="0"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto" />
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+publish/
+Output/
+
+# IDE
+.vs/
+*.user
+*.suo
+
+# OS
+Thumbs.db
+Desktop.ini
+
+# Release artifacts
+*.zip

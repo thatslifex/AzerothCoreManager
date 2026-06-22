@@ -1,0 +1,154 @@
+<Page x:Class="AzerothCoreManager.Pages.DatabasePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+      Title="Database">
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Header -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,12">
+            <TextBlock Text="Database" FontSize="24" FontWeight="SemiBold" Foreground="White"/>
+            <Button Content="?" Width="28" Height="28" Margin="8,0,0,0"
+                    Click="HelpButton_Click" ToolTip="Open Wiki Help"/>
+        </StackPanel>
+
+        <!-- Tab switcher -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button x:Name="AccountsTab" Content="Accounts" Width="100" Height="28"
+                    Margin="0,0,6,0" Click="AccountsTab_Click"
+                    Background="#FF2D2D5A" Foreground="White" FontWeight="SemiBold"/>
+            <Button x:Name="CharactersTab" Content="Characters" Width="100" Height="28"
+                    Margin="0,0,6,0" Click="CharactersTab_Click"/>
+            <Button x:Name="BansTab" Content="Bans" Width="80" Height="28"
+                    Margin="0,0,6,0" Click="BansTab_Click"/>
+            <Button x:Name="SqlTab" Content="SQL Query" Width="90" Height="28"
+                    Click="SqlTab_Click"/>
+        </StackPanel>
+
+        <!-- Refresh + Create buttons -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,8">
+            <Button x:Name="RefreshButton" Content="Refresh" Width="80" Height="28"
+                    Margin="0,0,8,0" Click="RefreshButton_Click"/>
+            <Button x:Name="CreateAccountButton" Content="Create Account" Width="120" Height="28"
+                    Margin="0,0,8,0" Click="CreateAccountButton_Click"
+                    Visibility="Visible"/>
+            <Button x:Name="BanAccountButton" Content="Unban Selected" Width="120" Height="28"
+                    Click="BanAccountButton_Click" Visibility="Collapsed"/>
+        </StackPanel>
+
+        <!-- Content area -->
+        <Border Grid.Row="3" Background="#CC1A1A2E" CornerRadius="6" Padding="8">
+            <Grid>
+                <!-- Accounts view -->
+                <ScrollViewer x:Name="AccountsScroller" Visibility="Visible">
+                    <DataGrid x:Name="AccountsGrid" AutoGenerateColumns="False"
+                              Background="Transparent" Foreground="White"
+                              RowBackground="#FF1A1A2E" BorderThickness="0"
+                              IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="50"/>
+                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="150"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+                            <DataGridTextColumn Header="GM Level" Binding="{Binding GmLevel}" Width="70"/>
+                            <DataGridTextColumn Header="Join Date" Binding="{Binding JoinDate, StringFormat='{}{0:yyyy-MM-dd}'}" Width="100"/>
+                            <DataGridTextColumn Header="Last IP" Binding="{Binding LastIp}" Width="120"/>
+                            <DataGridCheckBoxColumn Header="Locked" Binding="{Binding Locked}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+
+                <!-- Characters view -->
+                <ScrollViewer x:Name="CharactersScroller" Visibility="Collapsed">
+                    <DataGrid x:Name="CharactersGrid" AutoGenerateColumns="False"
+                              Background="Transparent" Foreground="White"
+                              RowBackground="#FF1A1A2E" BorderThickness="0"
+                              IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="GUID" Binding="{Binding Guid}" Width="60"/>
+                            <DataGridTextColumn Header="Account" Binding="{Binding AccountId}" Width="70"/>
+                            <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="140"/>
+                            <DataGridTextColumn Header="Race" Binding="{Binding Race}" Width="50"/>
+                            <DataGridTextColumn Header="Class" Binding="{Binding Class}" Width="50"/>
+                            <DataGridTextColumn Header="Level" Binding="{Binding Level}" Width="50"/>
+                            <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" Width="60"/>
+                            <DataGridCheckBoxColumn Header="Online" Binding="{Binding Online}" Width="60"/>
+                            <DataGridTextColumn Header="Money" Binding="{Binding Money}" Width="80"/>
+                            <DataGridTextColumn Header="Playtime (s)" Binding="{Binding TotalTime}" Width="90"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+
+                <!-- Bans view -->
+                <ScrollViewer x:Name="BansScroller" Visibility="Collapsed">
+                    <DataGrid x:Name="BansGrid" AutoGenerateColumns="False"
+                              Background="Transparent" Foreground="White"
+                              RowBackground="#FF1A1A2E" BorderThickness="0"
+                              IsReadOnly="True" HeadersVisibility="Column">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Account ID" Binding="{Binding AccountId}" Width="80"/>
+                            <DataGridTextColumn Header="Username" Binding="{Binding Username}" Width="140"/>
+                            <DataGridTextColumn Header="Ban Date" Binding="{Binding BanDate, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" Width="140"/>
+                            <DataGridTextColumn Header="Unban Date" Binding="{Binding UnbanDate, StringFormat='{}{0:yyyy-MM-dd HH:mm}'}" Width="140"/>
+                            <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="200"/>
+                            <DataGridCheckBoxColumn Header="Active" Binding="{Binding Active}" Width="60"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </ScrollViewer>
+
+                <!-- SQL Query view -->
+                <Grid x:Name="SqlView" Visibility="Collapsed">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,8">
+                        <TextBlock Text="Database:" Foreground="#FFAAAAAA" FontSize="12" 
+                                   VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <ComboBox x:Name="DatabaseCombo" Width="160" Height="26"
+                                  Background="#FF0D0D1A" Foreground="White"
+                                  BorderBrush="#FF333355">
+                            <ComboBoxItem Content="acore_auth" IsSelected="True"/>
+                            <ComboBoxItem Content="acore_characters"/>
+                            <ComboBoxItem Content="acore_world"/>
+                        </ComboBox>
+                    </StackPanel>
+
+                    <TextBox Grid.Row="1" x:Name="SqlInput"
+                             Background="#FF0D0D1A" Foreground="White"
+                             FontFamily="Consolas" FontSize="13"
+                             BorderBrush="#FF333355" BorderThickness="1"
+                             AcceptsReturn="True" MinHeight="60" MaxHeight="120"
+                             TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
+                             Margin="0,0,0,8"/>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,0,0,8">
+                        <Button x:Name="RunSqlButton" Content="Run Query" Width="100" Height="28"
+                                Margin="0,0,8,0" Click="RunSqlButton_Click"
+                                Background="#FF2D5A2D" Foreground="White"/>
+                        <Button x:Name="ClearSqlButton" Content="Clear" Width="60" Height="28"
+                                Click="ClearSqlButton_Click"/>
+                        <TextBlock x:Name="SqlStatus" Text="" Foreground="#FFAAAAAA" FontSize="12"
+                                   VerticalAlignment="Center" Margin="12,0,0,0"/>
+                    </StackPanel>
+
+                    <ScrollViewer Grid.Row="3">
+                        <DataGrid x:Name="SqlResultGrid" AutoGenerateColumns="True"
+                                  Background="Transparent" Foreground="White"
+                                  RowBackground="#FF1A1A2E" BorderThickness="0"
+                                  IsReadOnly="True" HeadersVisibility="Column"/>
+                    </ScrollViewer>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
